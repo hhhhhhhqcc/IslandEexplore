@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -68,6 +69,14 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        // Menus freeze gameplay even though Unity continues calling Update at timeScale 0.
+        if (GameMenuController.BlocksGameplayInput)
+        {
+            movement = Vector2.zero;
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
         float moveX = Input.GetAxisRaw("Horizontal");
         float moveY = Input.GetAxisRaw("Vertical");
         movement = new Vector2(moveX, moveY).normalized;
@@ -122,7 +131,8 @@ public class PlayerController : MonoBehaviour
 
         // ===== 攻击 =====
         hitTimer -= Time.deltaTime;
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+        bool pointerOverUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+        if (Input.GetKeyDown(KeyCode.Space) || (Input.GetMouseButtonDown(0) && !pointerOverUI))
         {
             TryHit();
         }
@@ -151,7 +161,7 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = movement * moveSpeed;
+        rb.velocity = GameMenuController.BlocksGameplayInput ? Vector2.zero : movement * moveSpeed;
     }
 
     private void TryHit()

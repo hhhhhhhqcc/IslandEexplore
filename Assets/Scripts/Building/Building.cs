@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Building : MonoBehaviour
 {
@@ -7,6 +8,8 @@ public class Building : MonoBehaviour
 
     private void Update()
     {
+        if (GameMenuController.BlocksGameplayInput) return;
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
         if (!Input.GetMouseButtonDown(1)) return;
 
         Transform player = GameObject.FindGameObjectWithTag("Player")?.transform;

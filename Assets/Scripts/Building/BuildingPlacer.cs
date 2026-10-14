@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BuildingPlacer : MonoBehaviour
 {   
@@ -12,6 +13,7 @@ public class BuildingPlacer : MonoBehaviour
     public Color invalidColor = new Color(1, 0, 0, 0.4f);
 
     private bool isBuildingMode;
+    public bool IsBuildingMode => isBuildingMode;
     private int selectedIndex;
     private GameObject previewObject;
     private SpriteRenderer previewRenderer;
@@ -36,8 +38,21 @@ public class BuildingPlacer : MonoBehaviour
 
     private void Update()
     {
+        if (GameMenuController.BlocksGameplayInput)
+        {
+            if (isBuildingMode) ExitBuildingMode();
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.B)) ToggleBuildingMode();
         if (!isBuildingMode) return;
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            GameMenuController.ConsumeEscapeThisFrame();
+            ExitBuildingMode();
+            return;
+        }
 
         if (Input.GetKeyDown(KeyCode.Alpha1)) SelectBuilding(0);
         if (Input.GetKeyDown(KeyCode.Alpha2)) SelectBuilding(1);
@@ -48,8 +63,8 @@ public class BuildingPlacer : MonoBehaviour
 
         UpdatePreview();
 
-        if (Input.GetMouseButtonDown(0)) TryPlaceBuilding();
-        if (Input.GetKeyDown(KeyCode.Escape)) ExitBuildingMode();
+        bool pointerOverUI = EventSystem.current != null && EventSystem.current.IsPointerOverGameObject();
+        if (Input.GetMouseButtonDown(0) && !pointerOverUI) TryPlaceBuilding();
     }
 
     private void ToggleBuildingMode()
@@ -209,10 +224,10 @@ public class BuildingPlacer : MonoBehaviour
         Debug.Log($"建造: {data.buildingName}（{data.gridSize.x}×{data.gridSize.y}）");
     }
 
-    private void ExitBuildingMode()
+    public void ExitBuildingMode()
     {
         isBuildingMode = false;
-        previewObject.SetActive(false);
+        if (previewObject != null) previewObject.SetActive(false);
     }
 
     private Sprite MakeTexSprite(Vector2Int size, Color c)

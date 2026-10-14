@@ -7,7 +7,7 @@
 1. 克隆或下载本仓库，在 Unity Hub 中添加仓库根目录。
 2. 优先使用 ProjectSettings/ProjectVersion.txt 记录的 **Unity 2022.3.42f1c1**。其他编辑器版本的导入与升级尚未验证。
 3. 等待 Unity 通过 Packages/manifest.json 和 packages-lock.json 恢复包依赖。
-4. 打开 Assets/Scenes/SampleScene.unity，进入 Play Mode。该场景已加入 Build Settings。
+4. 打开 Assets/Scenes/SampleScene.unity，进入 Play Mode；会自动显示开始菜单，点击“开始探险”进入游戏。该场景已加入 Build Settings。
 
 当前上传经过静态代码和资源检查，尚未在 Unity 编辑器中完成导入、编译和运行验证；请先查看下方的已知问题。
 
@@ -19,12 +19,22 @@
 | 装备工具 | 1 剑、2 镐、3 斧、4 铲 |
 | 攻击 / 采集 | 鼠标左键或空格，朝向鼠标位置 |
 | 打开 / 关闭背包 | E |
+| 暂停 / 继续；关闭当前子界面 | Esc |
 | 切换建造模式 | B |
 | 建造模式选择 | 1 熔炉、2 仓库、3 桥；左键放置 |
 | 查看附近熔炉配方 | 鼠标右键点击熔炉 |
 | 解锁已揭示的相邻岛屿 | 左键点击岛屿；需要足够金币 |
 
-工具和建筑模式共用数字键，左键也被多个系统处理；当前版本存在输入冲突，详见分析报告。
+工具和建筑模式仍共用数字键。菜单显示期间会停止游戏输入，点击 UI 不会触发世界内鼠标交互。
+
+## 基础页面
+
+- 像素风开始菜单：复用原有树木、玩家、石头和建筑资源，搭配深海蓝、木色边框、浅色文字与苔绿按钮。
+- Esc 暂停：继续探险、设置、操作说明、返回标题和退出。背包、冶炼或建造模式已打开时，Esc 优先关闭该界面。
+- 设置：主音量、全屏、窗口分辨率；点击“应用并保存”后保存在当前设备。显示切换提供 15 秒确认，超时或取消会恢复原设置。
+- 退出前确认；返回标题后可继续本次探险，但当前 Demo 仍无跨会话存档。
+
+页面自动在 SampleScene 中创建，无需手动挂载脚本或接线。编辑器中的退出会停止 Play Mode；显示设置在构建的游戏中生效。详见 [菜单说明与验证步骤](docs/MENU_UI.md)。
 
 ## 已实现的系统
 
@@ -69,6 +79,6 @@ docs/                      游戏分析和上传审计
 
 ## 仓库内容
 
-本仓库保留 Assets、Packages、ProjectSettings 及所有必要 .meta 文件，并新增说明文档、.gitignore、.gitattributes 及空目录占位文件。Library、Logs、UserSettings、IDE 缓存、生成的解决方案和历史可执行版本不进入 Git。此次整理未修复或改写游戏源码。
+本仓库保留 Assets、Packages、ProjectSettings 及所有必要 .meta 文件，并新增说明文档、.gitignore、.gitattributes 及空目录占位文件。Library、Logs、UserSettings、IDE 缓存、生成的解决方案和历史可执行版本不进入 Git。初次上传保留原始源码；随后加入基础页面及其必要的输入、暂停集成。
 
 仓库未添加 LICENSE；原始项目也未附带素材授权说明，代码及素材的许可需由作者另行明确。

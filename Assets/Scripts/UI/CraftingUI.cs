@@ -10,6 +10,7 @@ public class CraftingUI : MonoBehaviour
 
     private CraftingManager crafting;
     private bool isOpen;
+    public bool IsOpen => isOpen;
     private Building currentStation;
 
     private void Start()
@@ -21,10 +22,17 @@ public class CraftingUI : MonoBehaviour
 
     private void Update()
     {
+        if (GameMenuController.BlocksGameplayInput)
+        {
+            if (isOpen) Close();
+            return;
+        }
+
         if (isOpen)
         {
             if (Input.GetKeyDown(KeyCode.Escape))
             {
+                GameMenuController.ConsumeEscapeThisFrame();
                 Close();
                 return;
             }
@@ -44,6 +52,7 @@ public class CraftingUI : MonoBehaviour
 
     public void OpenFurnace(Building station)
     {
+        if (GameMenuController.BlocksGameplayInput) return;
         currentStation = station;
         if (stationTitle != null)
             stationTitle.text = "熔炉 - 冶炼";
@@ -55,7 +64,7 @@ public class CraftingUI : MonoBehaviour
     {
         isOpen = false;
         currentStation = null;
-        panel.SetActive(false);
+        if (panel != null) panel.SetActive(false);
     }
 
     private void BuildRecipeButtons()
@@ -84,6 +93,7 @@ public class CraftingUI : MonoBehaviour
 
     private void OnCraftClicked(RecipeSO recipe)
     {
+        if (GameMenuController.BlocksGameplayInput || !isOpen) return;
         if (crafting.Craft(recipe))
             StartCoroutine(FlashButton(recipe));
         else

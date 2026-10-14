@@ -65,6 +65,12 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
+        if (GameMenuController.BlocksGameplayInput)
+        {
+            rb.velocity = Vector2.zero;
+            return;
+        }
+
         if (state == EnemyState.Dead) return;
         sr.sortingOrder = Mathf.RoundToInt(-transform.position.y * 100)+20;
 

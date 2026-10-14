@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class TileClickHandler : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class TileClickHandler : MonoBehaviour
 
     private void Update()
     {
+        if (GameMenuController.BlocksGameplayInput) return;
+        if (EventSystem.current != null && EventSystem.current.IsPointerOverGameObject()) return;
         if (Input.GetMouseButtonDown(0))
         {
             TryUnlock();

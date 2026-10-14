@@ -16,6 +16,7 @@ public class InventoryUI : MonoBehaviour
     public ResourceDatabase resourceDB;
     private InventoryManager inventory;
     private bool isOpen;
+    public bool IsOpen => isOpen;
     private List<GameObject> slots = new List<GameObject>();
 
     private void Start()
@@ -27,12 +28,19 @@ public class InventoryUI : MonoBehaviour
 
     private void Update()
     {
+        if (GameMenuController.BlocksGameplayInput)
+        {
+            if (isOpen) Close();
+            return;
+        }
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             Toggle();
         }
         if (isOpen && Input.GetKeyDown(KeyCode.Escape))
         {
+            GameMenuController.ConsumeEscapeThisFrame();
             Close();
         }
 
@@ -48,10 +56,10 @@ public class InventoryUI : MonoBehaviour
         panel.SetActive(isOpen);
     }
 
-    private void Close()
+    public void Close()
     {
         isOpen = false;
-        panel.SetActive(false);
+        if (panel != null) panel.SetActive(false);
     }
 
     /// <summary>
