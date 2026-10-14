@@ -1,0 +1,43 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ccab8a117c253741b9b68a4fc954afb, type: 3}
+  m_Name: SpriteDB
+  m_EditorClassIdentifier: 
+  grasslandTiles:
+  - {fileID: 21300000, guid: 303415a7af2781944a21ce35e95e0264, type: 3}
+  - {fileID: 21300000, guid: 36bdcde100009b949aa316320dd738f3, type: 3}
+  - {fileID: 21300000, guid: 3164985d632e18c41aa67b1ebf9dbc31, type: 3}
+  forestTiles:
+  - {fileID: 21300000, guid: 46d3adc4a9658714bb6109fc69af58e4, type: 3}
+  desertTiles:
+  - {fileID: 21300000, guid: dc941bc8b45b3e14d81c52c4c52d4ac4, type: 3}
+  snowfieldTiles:
+  - {fileID: 21300000, guid: ea631bd8f4472a341961c68ae405556f, type: 3}
+  volcanoTiles:
+  - {fileID: 21300000, guid: e880e6d508c702a449228bf4af10c302, type: 3}
+  tree: {fileID: 21300000, guid: a7e680df832cb02459c80d471e942179, type: 3}
+  stone: {fileID: 21300000, guid: 63aa8b4324065f544808a14d5f055b01, type: 3}
+  fiber: {fileID: 21300000, guid: a2b4dc47b2a175b4baec914f953afad5, type: 3}
+  copperOre: {fileID: 21300000, guid: 335e003d3386f874391d3ab481f7532d, type: 3}
+  ironOre: {fileID: 21300000, guid: ff34e8de5517720408cddc3c924fa859, type: 3}
+  goldOre: {fileID: 21300000, guid: cbce5969cacf2374e9a4b48f46649ac5, type: 3}
+  coal: {fileID: 21300000, guid: cb7f7f62de0d954418f3889ffd04a77b, type: 3}
+  furnace: {fileID: 21300000, guid: 668e82edb6772924c9dd13f2162c8622, type: 3}
+  storageBox: {fileID: 21300000, guid: cff130c32ce41294bb2fe3f3eee5ecd4, type: 3}
+  bridge: {fileID: 21300000, guid: 176720626d6782743a3efccd8c14363e, type: 3}
+  slime: {fileID: 0}
+  treant: {fileID: 0}
+  scorpion: {fileID: 0}
+  iceElemental: {fileID: 0}
+  lavaGolem: {fileID: 0}
+  player: {fileID: 0}
+  oTile: {fileID: 21300000, guid: 664c2e8e3701c3347bf3e846570b1a1c, type: 3}

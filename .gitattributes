@@ -1,0 +1,19 @@
+# Preserve the original Unity project bytes and newline style.
+* -text
+
+# Repository documentation and configuration use LF.
+*.md text eol=lf
+.gitignore text eol=lf
+.gitattributes text eol=lf
+
+# Binary assets
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.wav binary
+*.ogg binary
+*.mp3 binary
+*.fbx binary
+*.ttf binary
+*.otf binary

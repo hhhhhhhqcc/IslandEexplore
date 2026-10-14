@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 283f9f4117f67f04cb452e04fd86f633, type: 3}
+  m_Name: Furnace
+  m_EditorClassIdentifier: 
+  buildingName: "\u7194\u7089"
+  buildingColor: {r: 0.54509807, g: 0.22745098, b: 0.22745098, a: 1}
+  buildingSize: {x: 2, y: 2}
+  requiredItem: "\u77F3\u5934"
+  requiredAmount: 5
+  description: "\u628A\u77FF\u77F3\u51B6\u70BC\u6210\u952D"
